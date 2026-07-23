@@ -7,3 +7,4 @@ export * from './registry.js';
 export * from './provenance.js';
 export * from './ppm.js';
 export * from './attribution.js';
+export * from './royalty.js';
