@@ -26,7 +26,7 @@ const soloSplit: SplitShare[] = [{ holderId: h('user-1'), ppm: SPLIT_SCALE }];
 
 describe('computeRoyaltyV1 — examples', () => {
   it('fee, pools, and holder allocation on a simple purchase', () => {
-    // €10.00 purchase, 30% fee → €7.00 net → €3.50 comp / €3.50 master
+    // €10.00 purchase, 60% fee → €4.00 net → €2.00 comp / €2.00 master
     const result = computeRoyaltyV1({
       event: purchase(1000n),
       composition: [
@@ -36,11 +36,11 @@ describe('computeRoyaltyV1 — examples', () => {
       master: soloSplit,
       policy: DEFAULT_ROYALTY_POLICY_V1,
     });
-    expect(result.platformFee).toEqual(money(300n, 'EUR'));
+    expect(result.platformFee).toEqual(money(600n, 'EUR'));
     expect(result.entries).toEqual([
-      { holderId: h('user-1'), rightType: 'composition', amount: money(140n, 'EUR') },
-      { holderId: h('writer-1'), rightType: 'composition', amount: money(210n, 'EUR') },
-      { holderId: h('user-1'), rightType: 'master', amount: money(350n, 'EUR') },
+      { holderId: h('user-1'), rightType: 'composition', amount: money(80n, 'EUR') },
+      { holderId: h('writer-1'), rightType: 'composition', amount: money(120n, 'EUR') },
+      { holderId: h('user-1'), rightType: 'master', amount: money(200n, 'EUR') },
     ]);
   });
 

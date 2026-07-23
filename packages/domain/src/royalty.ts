@@ -26,8 +26,13 @@ export interface RoyaltyPolicyV1 {
   readonly compositionPoolPpm: bigint;
 }
 
+/**
+ * Business parameters, not engine invariants — see ADR 0009 for the rationale
+ * and the Roblox comparison. Callers supply the policy in production; these are
+ * the agreed defaults.
+ */
 export const DEFAULT_ROYALTY_POLICY_V1: RoyaltyPolicyV1 = {
-  platformFeePpm: 300_000n, // 30% platform fee — business placeholder, caller-supplied in practice
+  platformFeePpm: 600_000n, // Burst keeps 60% of gross (Roblox keeps ~72%)
   compositionPoolPpm: 500_000n, // net splits 50/50 between composition and master
 };
 

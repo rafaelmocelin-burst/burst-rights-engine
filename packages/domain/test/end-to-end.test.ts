@@ -129,14 +129,17 @@ describe('end to end: snapshot → provenance → attribution → royalties', ()
       policy: DEFAULT_ROYALTY_POLICY_V1,
     });
 
-    // 999 → fee 299 → net 700 → comp 350 / master 350
-    expect(result.platformFee).toEqual(money(299n, 'EUR'));
+    // 999 → fee 599 (60%) → net 400 → comp 200 / master 200.
+    // Maya sampled a licensed stem, so she keeps half of each side's pool:
+    // 100 composition + 100 master = 200 of 999 (~20%); Burst keeps 599 plus
+    // whatever it earns as a rights-holder on its own sample library.
+    expect(result.platformFee).toEqual(money(599n, 'EUR'));
     expect(result.entries).toEqual([
-      { holderId: h('pub-north'), rightType: 'composition', amount: money(88n, 'EUR') },
-      { holderId: h('user-maya'), rightType: 'composition', amount: money(175n, 'EUR') },
-      { holderId: h('writer-ada'), rightType: 'composition', amount: money(87n, 'EUR') },
-      { holderId: h('label-blue'), rightType: 'master', amount: money(175n, 'EUR') },
-      { holderId: h('user-maya'), rightType: 'master', amount: money(175n, 'EUR') },
+      { holderId: h('pub-north'), rightType: 'composition', amount: money(50n, 'EUR') },
+      { holderId: h('user-maya'), rightType: 'composition', amount: money(100n, 'EUR') },
+      { holderId: h('writer-ada'), rightType: 'composition', amount: money(50n, 'EUR') },
+      { holderId: h('label-blue'), rightType: 'master', amount: money(100n, 'EUR') },
+      { holderId: h('user-maya'), rightType: 'master', amount: money(100n, 'EUR') },
     ]);
     const sum = result.entries.reduce((acc, e) => acc + e.amount.amount, 0n);
     expect(result.platformFee.amount + sum).toBe(999n); // conservation, end to end
