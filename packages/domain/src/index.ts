@@ -8,3 +8,5 @@ export * from './provenance.js';
 export * from './ppm.js';
 export * from './attribution.js';
 export * from './royalty.js';
+export * from './licensing.js';
+export * from './statements.js';
