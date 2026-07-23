@@ -111,4 +111,5 @@ Recommended start in Claude Code: create the GitHub repo, drop this file in as `
 ---
 
 ## 10. Change log
+- **v1.1 — 23 Jul 2026.** Phase 0 (Foundations) built and green. Repo created at `C:\Users\rafin\Documents\GitHub\burst-rights-engine` (clone kept outside Dropbox — ADR 0004; this charter mirrored there as `CLAUDE.md`). Stack: TypeScript npm-workspaces monorepo; pure domain core `@burst/domain` (bigint minor-unit money, integer-ppm splits, largest-remainder allocation, versioned rule registry) with 22 passing unit + property tests; initial Supabase migration (append-only ledger/usage/creation tables, deferred 100%-split constraint trigger, event-id idempotency, RLS deny-by-default); GitHub Actions CI; ADRs 0001–0004. Game repo surveyed (read-only): UE 5.3 with an existing Supabase client (`UBDatabaseManager`) and soundtrack "snapshot" recipes — see `docs/game-integration-notes.md` in the repo. GitHub remote not yet created (no `gh` CLI on machine). Next: push to GitHub, then Phase 1 (rights registry).
 - **v1 — 13 Jul 2026.** Charter created (vision, goal, outcomes, architecture, safeguards, tooling, phased plan).
