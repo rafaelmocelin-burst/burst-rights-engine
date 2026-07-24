@@ -126,6 +126,19 @@ host, or connections will exhaust under load.
 stay equivalent to it. Any divergence is a bug in the adapter, and the fix is to
 make the adapter pass the registry's tests — not to change the registry.
 
+### T4 — `PostgresStore` has no automated tests
+The API test suite runs against `InMemoryStore`; the Postgres adapter's SQL was
+verified by hand against the deployed schema (as-of split resolution, the
+user-holder upsert, and replayed-usage idempotency all confirmed), but nothing
+in CI would catch a regression in it. The fix is a contract test running **both
+adapters** against a real Postgres — either Supabase branches or a container in
+CI. Worth doing before the API carries real money.
+
+### T5 — Rate limiting and request size limits are not implemented
+Ingest endpoints accept up to 1000 recipe entries and unbounded `recipe` JSON.
+Vercel caps body size, but there is no per-principal rate limit. Needed before
+the API is publicly reachable.
+
 ### T3 — Provenance extraction is heuristic until the UE client lands
 Falling back to scanning `FTimelineSnapshot` for prefixed-GUID strings is
 deliberate and conservative, but the exact prefix set (recordings in
