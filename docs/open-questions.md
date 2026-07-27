@@ -82,6 +82,19 @@ revenue is real. (ADR 0011)
 
 ---
 
+## Innovation track
+
+### I1 — The engine needs a genuinely novel core, not just correct rails *(directive from Rafael, 2026-07-24)*
+The foundation (Phases 0–4, API) is financial-grade correctness, but
+`attribution/v1` is a placeholder policy — not innovation. The extraordinary
+part is **creation-time AI-contribution attribution**: attributing and paying
+human creator + sample owners + the artists whose licensed data trained the
+Kieku AI musician, from ground-truth telemetry captured while the music is
+made (vs. the industry's post-hoc detection). Full plan, claims, and action
+items V1–V5: `docs/innovation-roadmap.md`. Supersedes the framing of P2.
+
+---
+
 ## EIC / IP
 
 ### E1 — Deep-tech positioning is the real EIC risk *(highest-stakes open item)*
