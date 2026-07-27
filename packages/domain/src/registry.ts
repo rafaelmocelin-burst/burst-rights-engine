@@ -1,4 +1,5 @@
 import type {
+  AiMusician,
   Asset,
   Recording,
   RightsHolder,
@@ -6,7 +7,14 @@ import type {
   SplitVersion,
   Work,
 } from './entities.js';
-import type { AssetId, RecordingId, RightsHolderId, SplitVersionId, WorkId } from './ids.js';
+import type {
+  AiMusicianId,
+  AssetId,
+  RecordingId,
+  RightsHolderId,
+  SplitVersionId,
+  WorkId,
+} from './ids.js';
 import { validateSplits, type SplitShare } from './splits.js';
 
 /**
@@ -55,6 +63,7 @@ export class InMemoryRegistry {
   private readonly assets = new Map<AssetId, Asset>();
   private readonly assetsByExternalId = new Map<string, AssetId>();
   private readonly splitVersions = new Map<string, SplitVersion[]>(); // subjectKey → versions asc
+  private readonly aiMusicians = new Map<AiMusicianId, AiMusician>();
 
   registerWork(work: Work): void {
     if (this.works.has(work.id)) throw new RegistryError(`Work already registered: ${work.id}`);
@@ -175,6 +184,41 @@ export class InMemoryRegistry {
       }
     }
     return best;
+  }
+
+  /**
+   * Register an AI musician (a Kieku). Licensor shares — the training-data
+   * artists its earnings flow to — must be valid exact-100% split sets over
+   * registered holders, on at least one copyright side (ADR 0012).
+   */
+  registerAiMusician(musician: AiMusician): void {
+    if (this.aiMusicians.has(musician.id)) {
+      throw new RegistryError(`AI musician already registered: ${musician.id}`);
+    }
+    if (
+      musician.compositionLicensorShares === undefined &&
+      musician.masterLicensorShares === undefined
+    ) {
+      throw new RegistryError(
+        `AI musician ${musician.id} must declare licensor shares on at least one side`,
+      );
+    }
+    for (const shares of [musician.compositionLicensorShares, musician.masterLicensorShares]) {
+      if (shares === undefined) continue;
+      validateSplits(shares);
+      for (const share of shares) {
+        if (!this.holders.has(share.holderId)) {
+          throw new RegistryError(
+            `AI musician ${musician.id} references unregistered rights-holder: ${share.holderId}`,
+          );
+        }
+      }
+    }
+    this.aiMusicians.set(musician.id, musician);
+  }
+
+  getAiMusician(id: AiMusicianId): AiMusician | undefined {
+    return this.aiMusicians.get(id);
   }
 
   getWork(id: WorkId): Work | undefined {

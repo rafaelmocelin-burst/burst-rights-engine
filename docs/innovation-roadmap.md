@@ -133,10 +133,14 @@ else can show this today.
 - **V2 — Capture spec with Kieku.** Define the AI-session provenance block with
   the actual Kieku model integration (blocked on the Kieku↔Unreal integration
   work; the thesis model's I/O defines what is measurable).
-- **V3 — `attribution/v2` design ADR.** The weighting function, its invariants,
-  its property tests, and the anti-gaming analysis.
-- **V4 — Registry extension.** AI musicians as first-class registry subjects
-  with training-license lineage (mostly reuses existing structures).
+- **V3 — `attribution/v2` design ADR.** ✅ **Done 2026-07-24** (ADR 0012;
+  `packages/domain/src/attribution-v2.ts`, property-tested: exact-100%,
+  determinism, order-independence, creator-share monotonicity and bounds).
+  Remaining sub-item **V3-b**: fuller adversarial/anti-gaming analysis.
+- **V4 — Registry extension.** ✅ **Done 2026-07-24** — `AiMusician` in the
+  domain registry + migration 0004 (licensor-share sum trigger, telemetry
+  columns). Follow-ups: licensor-share versioning (T6); migration 0004 pending
+  application to the paused Supabase project (T7).
 - **V5 — Demo milestone.** The Section 4c demo, measured (latency, scale,
   reproducibility figures) — the EIC evidence artifact.
 

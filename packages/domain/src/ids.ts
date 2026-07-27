@@ -22,3 +22,4 @@ export type EventId = Branded<string, 'EventId'>;
 
 export type LedgerEntryId = Branded<string, 'LedgerEntryId'>;
 export type SplitVersionId = Branded<string, 'SplitVersionId'>;
+export type AiMusicianId = Branded<string, 'AiMusicianId'>;

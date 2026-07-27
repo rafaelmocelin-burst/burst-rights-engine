@@ -152,6 +152,20 @@ Ingest endpoints accept up to 1000 recipe entries and unbounded `recipe` JSON.
 Vercel caps body size, but there is no per-principal rate limit. Needed before
 the API is publicly reachable.
 
+### T6 — AI-musician licensor shares are not yet versioned
+Migration 0004 stores a Kieku's licensor shares as a single current set;
+work/recording splits are effective-dated versions. The domain rule is
+version-agnostic (shares are inputs), but the store must gain effective-dated
+licensor versions before the marketplace mutates them in production. (ADR 0012)
+
+### T7 — Supabase project paused; migration 0004 not applied to the live DB
+`burst-rights-engine` (eu-north-1) auto-paused, and restoring is blocked: the
+free plan caps rafael-mocelin at 2 active projects (`grvd-daw`,
+`burst-game-isometric` hold the slots). Options: pause one of those, upgrade
+the org, or leave paused until deploy matters. Migrations 0001–0003 are
+applied; **0004 (AI musicians + telemetry) is committed in the repo but NOT
+yet applied** — apply it first thing after restore.
+
 ### T3 — Provenance extraction is heuristic until the UE client lands
 Falling back to scanning `FTimelineSnapshot` for prefixed-GUID strings is
 deliberate and conservative, but the exact prefix set (recordings in
