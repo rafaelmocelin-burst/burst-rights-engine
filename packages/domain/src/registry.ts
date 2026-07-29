@@ -189,7 +189,7 @@ export class InMemoryRegistry {
   /**
    * Register an AI musician (a Kieku). Licensor shares — the training-data
    * artists its earnings flow to — must be valid exact-100% split sets over
-   * registered holders, on at least one copyright side (ADR 0012).
+   * registered holders, on at least one copyright side (ADR 0013).
    */
   registerAiMusician(musician: AiMusician): void {
     if (this.aiMusicians.has(musician.id)) {

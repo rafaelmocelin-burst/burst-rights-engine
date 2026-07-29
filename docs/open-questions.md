@@ -156,7 +156,7 @@ the API is publicly reachable.
 Migration 0004 stores a Kieku's licensor shares as a single current set;
 work/recording splits are effective-dated versions. The domain rule is
 version-agnostic (shares are inputs), but the store must gain effective-dated
-licensor versions before the marketplace mutates them in production. (ADR 0012)
+licensor versions before the marketplace mutates them in production. (ADR 0013)
 
 ### T7 — Supabase project paused; migration 0004 not applied to the live DB
 `burst-rights-engine` (eu-north-1) auto-paused, and restoring is blocked: the

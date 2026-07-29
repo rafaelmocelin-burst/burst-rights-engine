@@ -1,4 +1,4 @@
-# ADR 0012 — `attribution/v2`: creation-time AI-contribution attribution
+# ADR 0013 — `attribution/v2`: creation-time AI-contribution attribution
 
 **Date:** 2026-07-24 · **Status:** accepted · **Implements:** roadmap items V3 + V4 (docs/innovation-roadmap.md)
 

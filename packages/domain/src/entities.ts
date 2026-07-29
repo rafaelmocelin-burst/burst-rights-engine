@@ -101,7 +101,7 @@ export interface License {
  * An AI musician (a Kieku): a specific model version whose training data was
  * licensed from identifiable artists. Its licensor shares are exact-100% split
  * sets over registered rights-holders — the people its earnings flow to when a
- * creation is made with it (ADR 0012). Model version is part of identity:
+ * creation is made with it (ADR 0013). Model version is part of identity:
  * a retrained model is a NEW AiMusician, because its lineage may differ.
  */
 export interface AiMusician {

@@ -133,7 +133,7 @@ else can show this today.
 - **V2 — Capture spec with Kieku.** Define the AI-session provenance block with
   the actual Kieku model integration (blocked on the Kieku↔Unreal integration
   work; the thesis model's I/O defines what is measurable).
-- **V3 — `attribution/v2` design ADR.** ✅ **Done 2026-07-24** (ADR 0012;
+- **V3 — `attribution/v2` design ADR.** ✅ **Done 2026-07-24** (ADR 0013;
   `packages/domain/src/attribution-v2.ts`, property-tested: exact-100%,
   determinism, order-independence, creator-share monotonicity and bounds).
   Remaining sub-item **V3-b**: fuller adversarial/anti-gaming analysis.

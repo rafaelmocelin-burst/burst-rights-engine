@@ -4,7 +4,7 @@ import type { RuleVersion } from './rules.js';
 import { SPLIT_SCALE, validateSplits, type SplitShare } from './splits.js';
 
 /**
- * `attribution/v2` — creation-time AI-contribution attribution (ADR 0012).
+ * `attribution/v2` — creation-time AI-contribution attribution (ADR 0013).
  *
  * Turns ground-truth telemetry captured while the music was made into
  * ownership splits per copyright side. Three contributor classes flow into one
